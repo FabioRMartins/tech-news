@@ -26,12 +26,14 @@ def scrape_updates(html_content: str) -> list:
     for news in selector.css("div.cs-overlay"):
         scrape_news.append(news.css("a::attr(href)").get())
     return scrape_news
-        
 
 
 # Requisito 3
 def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(html_content)
+    if not selector.css("a.next::attr(href)"):
+        return None
+    return selector.css("a.next::attr(href)").get()
 
 
 # Requisito 4
