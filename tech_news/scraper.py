@@ -1,11 +1,15 @@
 import requests
 import time
+from parsel import Selector
+
 
 # Requisito 1
 def fetch(url: str, wait: int = 1) -> str:
     time.sleep(1)
     try:
-        response = requests.get(url, timeout=wait, header={ "user-agent": "Fake user-agent" })
+        response = requests.get(url, timeout=wait, header={
+            "user-agent": "Fake user-agent"
+        })
         response.raise_for_status()
     except (requests.HTTPError, requests.ReadTimeout):
         return None
@@ -14,8 +18,15 @@ def fetch(url: str, wait: int = 1) -> str:
 
 
 # Requisito 2
-def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
+def scrape_updates(html_content: str) -> list:
+    selector = Selector(html_content)
+    scrape_news = []
+    if not selector.css("div.cs-overlay"):
+        return []
+    for news in selector.css("div.cs-overlay"):
+        scrape_news.append(news.css("a::attr(href)").get())
+    return scrape_news
+        
 
 
 # Requisito 3
