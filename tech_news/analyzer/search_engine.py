@@ -41,3 +41,10 @@ def search_by_tag(tag):
 
 # Requisito 9
 def search_by_category(category):
+    tech_news = search_news({"category": {"$regex": category, "$options": "i"}})
+    if not tech_news:
+        return []
+    search = []
+    for news in tech_news:
+        search.append((news['title'], news['url']))
+    return search
