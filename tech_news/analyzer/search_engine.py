@@ -17,7 +17,9 @@ def search_by_title(title):
 def search_by_date(date):
     try:
         date_information = datetime.fromisoformat(date).strftime("%d/%m/%Y")
-        tech_news = search_news({"timestamp": {"$regex": date_information, "$options": "i"}})
+        tech_news = search_news({"timestamp": {
+            "$regex": date_information, "$options": "i"
+            }})
         search = []
         if not tech_news:
             return []
@@ -41,7 +43,9 @@ def search_by_tag(tag):
 
 # Requisito 9
 def search_by_category(category):
-    tech_news = search_news({"category": {"$regex": category, "$options": "i"}})
+    tech_news = search_news({"category": {
+        "$regex": category, "$options": "i"
+        }})
     if not tech_news:
         return []
     search = []
