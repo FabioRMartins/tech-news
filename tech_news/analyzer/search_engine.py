@@ -30,7 +30,13 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-
+    tech_news = search_news({"tags": {"$regex": tag, "$options": "i"}})
+    if not tech_news:
+        return []
+    search = []
+    for news in tech_news:
+        search.append((news['title'], news['url']))
+    return search
 
 
 # Requisito 9
