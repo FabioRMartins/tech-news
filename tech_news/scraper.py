@@ -6,7 +6,7 @@ from tech_news.database import create_news
 
 
 # Requisito 1
-def fetch(url: str, wait: int = 1) -> str:
+def fetch(url, wait = 1):
     time.sleep(1)
     try:
         response = requests.get(url, timeout=wait, header={
@@ -20,7 +20,7 @@ def fetch(url: str, wait: int = 1) -> str:
 
 
 # Requisito 2
-def scrape_updates(html_content: str) -> list:
+def scrape_updates(html_content):
     selector = Selector(html_content)
     scrape_news = []
     if not selector.css("div.cs-overlay"):
