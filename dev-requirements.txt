@@ -11,4 +11,4 @@ requests==2.24.0
 pymongo==3.11.0
 python-decouple==3.3
 parsel==1.6.0
-beutifulsoup4==4.9.3
+beutifulsoup4==4.11.1
