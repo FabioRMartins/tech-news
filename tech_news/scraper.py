@@ -6,7 +6,7 @@ from tech_news.database import create_news
 
 
 # Requisito 1
-def fetch(url, wait: 1):
+def fetch(url: str, wait: int = 1) -> str:
     time.sleep(1)
     try:
         response = requests.get(url, timeout=wait, header={
